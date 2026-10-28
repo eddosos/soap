@@ -1,0 +1,17 @@
+base: Qwen/Qwen2.5-VL-7B-Instruct
+data:
+  format: alpaca
+  max_length: 2048
+  train: /content/eur-usd-screenshots/formatted_dataset.json
+  val_split: 0.0
+output: ./qwen2.5-vl-finetuned
+task: sft
+training:
+  batch_size: 1
+  epochs: 3
+  lora:
+    alpha: 32
+    r: 16
+    target_modules: auto
+  lr: 2.0e-05
+  quantization: 4bit
